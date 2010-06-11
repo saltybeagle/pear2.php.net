@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r xmlns="http://pear.php.net/dtd/rest.release" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://pear.php.net/dtd/rest.release http://pear.php.net/dtd/rest.release.xsd">
+ <p xlink:href="rest/p/pear2_pyrus">PEAR2_Pyrus</p>
+ <c>pear2.php.net</c>
+ <v>2.0.0a1</v>
+ <st>alpha</st>
+ <l>New BSD License</l>
+ <m>saltybeagle</m>
+ <s>Pyrus is the package manager and installer for PHP 5.3 or newer
+</s>
+ <d>
+Pyrus provides the means to install and manage installations for
+packages built using package.xml version 2.0 or newer.  Pyrus is
+redesigned from the ground up for PHP 5.3 or newer, and provides
+significant improvements over the older PEAR Installer.
+
+To use Pyrus, execute it from the command line:
+$ php pyrus.phar install PEAR2_Templates_Savant-0.1.0
+
+For more information, view the documentation at:
+http://pear.php.net/manual/en/pyrus.php</d>
+ <da>2010-06-10 09:34:43</da>
+ <n>Initial development release
+
+Missing features:
+ - mass upgrade/remote-list
+ - Web frontend
+
+Implemented features:
+ - install of both PEAR and Pyrus-generated packages
+ - remote install from URL
+ - remote install from channel
+ - more robust file transactions that are nearly atomic
+ - much smarter dependency resolution than PEAR
+ - much smarter pre-download version resolution for dependencies
+ - registry transactions on installation
+ - redundant registries in sqlite3, xml formats
+ - full support for PEAR 1.x serialized array registry
+ - full-featured CLI frontend
+ - post-install scripts
+
+
+Initial pyrus public API
+</n>
+ <f>1103956</f>
+ <g>http://pear2.php.net/get/PEAR2_Pyrus-2.0.0a1</g>
+ <x xlink:href="package.2.0.0a1.xml"/>
+</r>

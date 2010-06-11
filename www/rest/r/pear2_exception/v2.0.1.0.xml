@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r xmlns="http://pear.php.net/dtd/rest.release2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://pear.php.net/dtd/rest.release2 http://pear.php.net/dtd/rest.release2.xsd">
+ <p xlink:href="rest/p/pear2_exception">PEAR2_Exception</p>
+ <c>pear2.php.net</c>
+ <v>0.1.0</v>
+ <a>0.1.0</a>
+ <mp>5.2.0</mp>
+ <st>alpha</st>
+ <l>New BSD License</l>
+ <m>cellog</m>
+ <s>pear2\Exception is the standard exception class for PEAR2.
+</s>
+ <d>In addition to supporting the default signature of the built-in
+Exception class, pear2\Exception also supports passing a
+cause of an exception, which can be another exception object
+or a PEAR2_MultiErrors object.  The error messages of the causes
+are used when constructing the error message displayed when
+converting pear2\Exception to a string.
+
+pear2\Exception should always be extended by your own custom exception
+class for the package.</d>
+ <da>2009-07-07 22:57:54</da>
+ <n>Initial Release</n>
+ <f>32533</f>
+ <g>http://pear2.php.net/get/PEAR2_Exception-0.1.0</g>
+ <x xlink:href="package.0.1.0.xml"/>
+</r>
