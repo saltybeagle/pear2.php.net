@@ -9,10 +9,22 @@ if (file_exists($rss_feed)) {
 
 <div id="recent">
     <h2>Recent Packages</h2>
-    <ul>
-        <?php echo $savant->render(new \PEAR2\SimpleChannelFrontend\LatestReleases(array('frontend'=>$parent->context->getRawObject(), 'limit'=>10))); ?>
-    </ul>
+
+<?php
+
+echo $savant->render(
+    new \PEAR2\SimpleChannelFrontend\LatestReleases(
+        array(
+            'frontend' => $parent->context->getRawObject(),
+            'limit'    => 10,
+        )
+    )
+);
+
+?>
+
 </div>
+
 <div id="news">
     <h2>News</h2>
     <?php if (!empty($blog)) { ?>
@@ -24,9 +36,21 @@ if (file_exists($rss_feed)) {
         <?php } ?>
         </ul>
     <?php } else { ?>
-        <p>Looks like we don't have an RSS feed. Try adding a cron job to fetch <a href="http://blog.pear.php.net/feed/">http://blog.pear.php.net/feed/</a> and put it in <?php print $rss_feed; ?></p>
-        <pre>wget --output-document=/var/tmp/pear/rss_cache/pear-news.xml http://blog.pear.php.net/feed/</pre>
+
+    <p>Looks like we don't have an RSS feed. Try adding a cron job to fetch <a href="http://blog.pear.php.net/feed/">http://blog.pear.php.net/feed/</a> and put it in <?php print $rss_feed; ?></p>
+    <p><code>wget --output-document=/var/tmp/pear/rss_cache/pear-news.xml http://blog.pear.php.net/feed/</code></p>
     <?php } ?>
+
 </div>
 
-<?php echo $savant->render(new \PEAR2\SimpleChannelFrontend\Categories(array('frontend'=>$parent->context->getRawObject()))); ?>
+<?php
+
+echo $savant->render(
+    new \PEAR2\SimpleChannelFrontend\Categories(
+        array(
+            'frontend' => $parent->context->getRawObject()
+        )
+    )
+);
+
+?>
