@@ -37,10 +37,12 @@ class Router
 
         if ($requestURI === $base) {
             $options['view'] = 'news';
+        } elseif ($requestURI === $base . 'search/'
+            || $requestURI === $base . 'search'
+        ) {
+            $options['view'] = 'search';
         } elseif ($requestURI === $base . 'categories/') {
             $options['view'] = 'categories';
-        } elseif ($requestURI === $base . 'packages/') {
-            $options['view'] = 'packages';
         } elseif ($requestURI === $base . 'support/') {
             $options['view'] = 'support';
         } elseif (preg_match($categoryExp, $requestURI, $matches) === 1) {

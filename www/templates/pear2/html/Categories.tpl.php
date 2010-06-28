@@ -1,13 +1,14 @@
 <?php
 
 // Set the page title
-$parent->context->page_title = 'Categories | ' . PEAR2\SimpleChannelFrontend\Main::$channel->name;
+$parent->context->page_title = 'Categories - '
+    . PEAR2\SimpleChannelFrontend\Main::$title;
 
 $categoriesPerRow    = 3;
 $packagesPerCategory = 4;
 
 ?>
-        <div id="packages" class="pearbox">
+        <div id="categories" class="package-list pearbox">
             <div class="pearbox-header">
                 <h2>Packages</h2>
                 <?php echo $savant->render(null, 'SearchForm.tpl.php'); ?>
@@ -49,10 +50,11 @@ foreach ($context as $category) {
                 echo '…';
                 break;
             } else {
-                $packageHref = PEAR2\SimpleChannelFrontend\Main::getURL()
+                $packageTitle = str_replace('PEAR2_', '', $package->name);
+                $packageHref  = PEAR2\SimpleChannelFrontend\Main::getURL()
                     . $package->name;
 
-                echo '<a href="' . $packageHref . '">' . $package->name . '</a>';
+                echo '<a href="' . $packageHref . '">' . $packageTitle . '</a>';
             }
 
             echo '</li>';

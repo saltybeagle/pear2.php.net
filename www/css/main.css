@@ -1,3 +1,15 @@
+/**
+ * Main Styles
+ *
+ * Includes layout, default color, font and form styles.
+ *
+ * @package   PEAR2Web
+ * @copyright 2010 PEAR Group
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD License
+ * @author    Michael Gauthier <mike@silverorange.com>
+ */
+/* {{{ Layout */
+
 html {
 	height: 100%;
 	background: none;
@@ -12,6 +24,33 @@ body {
 	padding: 0;
 	color: #323232;
 }
+
+/* Clearing container fix */
+
+.clearfix:after {
+	display: block;
+	content: '.';
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
+
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+/* End hide from IE Mac */
+
+.content {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#content {
+	padding: 20px;
+}
+
+/* }}} */
+/* {{{ Default fonts, colors, etc. */
 
 :link,
 :visited {
@@ -44,46 +83,40 @@ strong {
 	font-weight: bold;
 }
 
-
-/* Clearing container fix */
-
-.clearfix:after {
-	display: block;
-	content: '.';
-	visibility: hidden;
-	height: 0;
-	clear: both;
+ol li {
+	list-style-type: decimal;
+	margin: 0.5em 0 0.5em 2em;
 }
 
-.clearfix {display:inline-block;}
-/* Hide from IE Mac \*/
-.clearfix {display:block;}
-/* End hide from IE Mac */
-
-
-.content {
-	width: 900px;
-	margin: 0 auto;
-}
+/* }}} */
+/* {{{ Forms */
 
 .button {
-	background: #fff;
+	background: #fff url(../img/button-bg.png) repeat-x 0 50%;
 	color: #555;
 	font-weight: bold;
-	text-decoration: none;
 	padding: 3px 15px;
-	background-color: #fff;
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.5, #fff),color-stop(0.5, #f0f0f0));
-	background-image: -moz-linear-gradient(center top , #fff 50%, #f0f0f0 0%);
-	border-radius: 4px;
-	text-shadow: 0 1px #fff;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+
 	border: 1px solid #999;
-	-webkit-box-shadow: 0 0 0 1px rgba(255,255,255,1) inset, 0 0 2px rgba(0,0,0,0.3);
-	-moz-box-shadow: 0 0 0 1px rgba(255,255,255,1) inset, 0 0 2px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+
+	text-shadow: 0 1px #fff;
+	box-shadow: 0 0 0 1px rgba(255,255,255,1) inset, 0 1px 3px -1px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 0 0 1px rgba(255,255,255,1) inset, 0 1px 3px -1px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 0 0 1px rgba(255,255,255,1) inset, 0 1px 3px -1px rgba(0,0,0,0.3);
 }
+
+#mid .button {
+	border: 1px solid #fff;
+	box-shadow: 0 0 3px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 3px rgba(0,0,0,0.4);
+}
+
 a.button {
+	text-decoration: none;
 	padding-top: 3px;
 	padding-bottom: 3px;
 }
@@ -93,6 +126,7 @@ a.button {
 	font-size: 11px;
 	vertical-align: middle;
 }
+
 a.button-small {
 	padding: 2px 12px;
 }
@@ -106,6 +140,7 @@ textarea,
 input[type=search],
 input[type=password],
 input[type=text] {
+	background: #fff;
 	padding: 4px;
 	border: 1px solid #999;
 	color: #646464;
@@ -114,6 +149,10 @@ input[type=text] {
 	-moz-border-radius: 4px;
 	-moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
 	-webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+}
+
+input[type=search] {
+	-webkit-appearance: textfield;
 }
 
 textarea:focus,
@@ -157,6 +196,7 @@ input[type=text]:focus {
 	margin: 0.2em 0;
 	float: left;
 }
+
 input[type=radio] {
 	margin: 5px 0.5em 0 0;
 	float: left;
@@ -167,6 +207,9 @@ input[type=radio] {
 	font-size: 11px;
 	color: #646464;
 }
+
+/* }}} */
+/*  {{{ Header */
 
 #header #top {
 	padding: 0 20px 5px 20px;
@@ -309,155 +352,8 @@ height: 100%;
 	padding: 6px 12px;
 }
 
-
-#header #mid {
-	clear: both;
-	padding: 20px;
-	font-size: 17px;
-	color: #fff;
-	background: #649f43;
-}
-#header #mid :link,
-#header #mid :visited,
-#header #mid :link:hover,
-#header #mid :visited:hover {
-	text-decoration: underline;
-	color: #fff;
-}
-
-#header #mid .left {
-	width: 440px;
-	float: left;
-}
-
-#header #mid .right {
-	width: 440px;
-	float: right;
-}
-#header #mid h2 span {
-	text-transform: uppercase;
-	color: #ffff86;
-	font-size: 15px;
-}
-
-#header #mid #download {
-	padding-top: 10px;
-}
-#header #mid #download a {
-	color: #646464;
-	text-decoration: none;
-}
-
-#header #bottom {
-	clear: both;
-	padding: 12px;
-	color: #505050;
-	background: #afd5df;
-}
-#header #bottom h2 {
-	margin-right: 20px;
-	font-size: 14px;
-	display: inline;
-}
-
-#content {
-	padding: 20px;
-}
-
-#content .content {
-}
-
-#content ol li {
-	list-style-type: decimal;
-	margin: 0.5em 0 0.5em 2em;
-}
-
-
-/* Recent Packages */
-
-#recent {
-	float: left;
-	width: 595px;
-	margin: 0;
-	padding-bottom: 20px;
-}
-#recent-left {
-	padding: 10px 0;
-	float: left;
-	width: 290px;
-	margin: 0 15px 0 0;
-}
-#recent-right{
-	padding: 10px 0;
-	float: left;
-	width: 290px;
-	margin 0 15px;
-}
-#recent li {
-	margin: 0 0 0.3em 10px;
-}
-#recent li span {
-	font-size: 10px;
-	color: #505050;
-	white-space: nowrap;
-}
-
-/* News */
-
-#news {
-	float: right;
-	width: 290px;
-	margin: 0 0 0 15px;
-	padding-bottom: 20px;
-}
-#news ul {
-	padding: 10px 0;
-}
-#news li {
-	margin: 0 0 0.3em 10px;
-}
-#news li span {
-	font-size: 10px;
-	color: #505050;
-	white-space: nowrap;
-}
-
-
-/* Find Packages */
-
-#find-packages {
-	float: right;
-	padding: 2px 0px 10px 0px;
-}
-
-#find-packages input[type=submit] {
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomright: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-}
-
-#find-packages input[type=submit]::-moz-focus-inner {
-	padding: 0;
-	border: none;
-}
-
-#find-packages input[type=search] {
-	border-right: 0;
-	-webkit-border-top-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-moz-border-radius-topright: 0;
-	-moz-border-radius-bottomright: 0;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
+/* }}} */
+/* {{{ Pearbox */
 
 .pearbox {
 	background: #d0e2c6;
@@ -494,8 +390,8 @@ height: 100%;
 	padding: 12px 4px 8px 4px;
 }
 
-
-/* Messages */
+/* }}} */
+/* {{{ Messages */
 
 .pear-message {
 	padding: 5px;
@@ -518,15 +414,8 @@ height: 100%;
 	margin: 0;
 }
 
-/* Browse Packages */
-
-#packages h2,
-.packagelist h2 {
-	float: left;
-}
-
-
-/* Footer */
+/* }}} */
+/* {{{ Footer */
 
 #footer {
 	padding: 20px;
@@ -565,6 +454,7 @@ height: 100%;
 	font-size: 14px;
 	margin-bottom: 80px;
 }
+
 #footer .note :link,
 #footer .note :visited,
 #footer .note :link:hover,
@@ -572,3 +462,5 @@ height: 100%;
 	text-decoration: underline;
 	color: #c1d9b4;
 }
+
+/* }}} */

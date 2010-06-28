@@ -1,6 +1,9 @@
 <?php
 
 switch ($context->stability['release']) {
+case 'devel':
+    $statusClass = 'package-devel';
+    break;
 case 'alpha':
     $statusClass = 'package-alpha';
     break;
@@ -53,7 +56,11 @@ if ($licenseURI) {
             <td></td>
         </tr -->
 
-<?php if ($parent->parent->context->options['view'] === 'package') { ?>
+<?php
+if (   isset($parent->parent->context->options)
+    && $parent->parent->context->options['view'] === 'package'
+) {
+?>
         <tr>
             <th>Maintainers:</th>
             <td>
