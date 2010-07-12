@@ -1,0 +1,40 @@
+.file-list {
+	width: 250px;
+	float: left;
+	margin-top: 0;
+}
+
+.file-list ul ul li {
+	margin-left: 0.5em;
+}
+
+.file-content {
+	font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Lucida Console", monospace;
+	font-size: 12px;
+	margin: 0 0 0 280px;
+	width: 620px;
+}
+.file-content .file-line-numbers {
+	float: left;
+	color: #888;
+	margin-bottom: 4em;
+}
+
+.file-content .file-line-numbers div {
+	text-align: right;
+	margin: 0 1em 0 0;
+}
+
+.file-content pre {
+	overflow-x: auto;
+}
+
+.file-content pre code {
+	line-height: 1.231;
+	font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Lucida Console", monospace;
+}
+
+.file-content .file-end {
+	margin-top: 1em;
+	color: #888;
+}
