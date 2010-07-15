@@ -40,22 +40,26 @@ echo $savant->render($context, 'PackageDetails.tpl.php');
 ?>
 
 <?php
-if (count($context->dependencies['required']->package) > 0):
-?>
-    <div class="package-dependencies">
-        <h3>Dependencies for <?php echo $context->name; ?></h3>
-        <ul>
 
+// reset version, maintainer count resets version for some reason
+$context->setRawVersion(
+    null,
+    array('release' => $parent->context->options['packageVersion'])
+);
+
+$filesURL = PEAR2\SimpleChannelFrontend\Main::getURL()
+    . $context->name . '-' . $context->version['release']
+    . '/files';
+
+?>
+    <div class="package-files">
+        <h3><a class="button" href="<?php echo $filesURL; ?>">Browse Files</a></h3>
+        <span class="package-files-info"><?php echo $savant->render($context, 'PackageFileInfo.tpl.php'); ?>
+    </div>
 <?php
 
-foreach ($context->dependencies['required']->package as $name => $package) {
-    echo '<li><a href="http://'.$name.'">' . $name . '</a></li>';
-}
+echo $savant->render($context, 'PackageDependencies.tpl.php');
 
 ?>
-        </ul>
-    </div>
-
-<?php endif; ?>
 
 </div>

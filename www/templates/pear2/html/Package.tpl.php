@@ -94,72 +94,30 @@ foreach ($context as $version => $release) {
     $count++;
 }
 
+// TODO: should iteration really modify the object?
+$context->rewind();
+$context->setRawVersion(null, array('release' => $context->key()));
+
 ?>
             </tbody>
         </table>
     </div>
 
 <?php
-if (count($context->dependencies['required']->package) > 0):
+
+$filesURL = PEAR2\SimpleChannelFrontend\Main::getURL()
+    . $context->name . '/files';
+
 ?>
-    <div class="package-dependencies">
-        <h3>Dependencies for <?php echo $context->name; ?></h3>
-        <ul>
+    <div class="package-files">
+        <h3><a class="button" href="<?php echo $filesURL; ?>">Browse Files</a></h3>
+        <span class="package-files-info"><?php echo $savant->render($context, 'PackageFileInfo.tpl.php'); ?>
+    </div>
 
 <?php
 
-// php dependencies
-foreach ($context->dependencies['required']->php as $php) {
-
-    if ($php->min && $php->max) {
-        $phpTitle = 'PHP ≥ ' . $php->min . ' ≤ '. $php->max;
-    } else if ($php->min) {
-        $phpTitle = 'PHP ≥ ' . $php->min;
-    } else if ($php->max) {
-        $phpTitle = 'PHP ≤ ' . $php->max;
-    }
-
-    echo '<li>' . $phpTitle. '</li>';
-}
-
-
-// package dependencies
-foreach ($context->dependencies['required']->package as $name => $package) {
-    echo '<li><a href="http://'.$name.'">' . $name . '</a></li>';
-}
-
-// extension dependencies
-foreach ($context->dependencies['required']->extension as $name => $extension) {
-
-    $extensionTitle = $name . ' extension';
-
-    if ($extension->min && $extension->max) {
-        $extensionTitle .= ' ≥ ' . $extension->min . ' ≤ '. $extension->max;
-    } else if ($extension->min) {
-        $extensionTitle .= ' ≥ ' . $extension->min;
-    } else if ($extension->max) {
-        $extensionTitle .= ' ≤ ' . $extension->max;
-    }
-
-    echo '<li>' . $extensionTitle . '</li>';
-}
-
-// os dependencies
-foreach ($context->dependencies['required']->os as $name => $supported) {
-
-    if ($supported) {
-        $osTitle = 'only works on ' . $name;
-    } else {
-        $osTitle = 'does not works on ' . $name;
-    }
-
-    echo '<li>' . $osTitle . '</li>';
-}
+echo $savant->render($context, 'PackageDependencies.tpl.php');
 
 ?>
-        </ul>
-    </div>
-
-<?php endif; ?>
 
 </div>

@@ -8,17 +8,20 @@
  */
 /* {{{ Layout */
 
-.view-package h3 {
+.view-package h3,
+.view-release h3 {
 	margin: 20px 0 5px 0;
 }
 
-.view-package .left {
+.view-package .left,
+.view-release .left {
 	width: 528px;
 	float: left;
 	margin-right: 20px;
 }
 
-.view-package .right {
+.view-package .right,
+.view-release .right {
 	width: 352px;
 	float: left;
 }
@@ -43,6 +46,21 @@
 	font-size: 11px;
 	overflow-x: auto;
 	overflow-y: hidden;
+}
+
+.package-description ol,
+.package-description ul {
+	margin: 0 0 0.5em 0;
+}
+
+.package-description ol li {
+	margin-left: 2em;
+	list-style-type: decimal;
+}
+
+.package-description ul li {
+	margin-left: 2em;
+	list-style-type: disc;
 }
 
 .package-description .code code {
@@ -160,7 +178,25 @@ li.package-documentation-api {
 }
 
 /* }}} */
+/* {{{ Browse files */
+
+.package-files {
+	margin: 15px 0 5px 1.8em;
+}
+
+.package-files h3 {
+	font-size: 13px;
+	display: inline;
+	margin: 0 0.5em 0 0;
+}
+
+/* }}} */
 /* {{{ Package releases */
+
+.package-releases h3 {
+	/* TODO: remove this when the documentation section goes live */
+	margin-top: 0;
+}
 
 .package-releases table {
 	margin: 0;

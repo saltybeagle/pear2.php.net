@@ -1,18 +1,5 @@
 <?php
 
-// Set the page title
-$parent->context->page_title = 'File Content - '
-    . PEAR2\SimpleChannelFrontend\Main::$title;
-
-?>
-<h2>File</h2>
-<div class="file-list pearbox">
-<div class="pearbox-header">
-<h3>Files</h3>
-</div>
-<div class="pearbox-content">
-<?php
-
 if (isset($context->options['packageVersion'])) {
     $releaseRoot = $context->package->name . '-'
         . $context->package->version['release'];
@@ -20,11 +7,63 @@ if (isset($context->options['packageVersion'])) {
     $releaseRoot = $context->package->name;
 }
 
+$packageURL = PEAR2\SimpleChannelFrontend\Main::getURL()
+    . $context->package->name;
+
+$releaseURL = PEAR2\SimpleChannelFrontend\Main::getURL()
+    . $releaseRoot;
+
+// Set the page title
+if (isset($context->options['file'])) {
+    $parent->context->page_title = $context->options['file'] . ' - '
+        . $releaseRoot . ' - '
+        . PEAR2\SimpleChannelFrontend\Main::$title;
+} else {
+    $parent->context->page_title = 'Files - '
+        . $releaseRoot . ' - '
+        . PEAR2\SimpleChannelFrontend\Main::$title;
+}
+
+?>
+<div class="file-title pearbox">
+    <div class="pearbox-header">
+        <h2>
+            <?php
+            echo '<a href="' . $packageURL . '">' . $context->package->name . '</a>';
+
+            if (isset($context->options['packageVersion'])) {
+                echo '-<a href="' . $releaseURL . '">' . $context->package->version['release'] . '</a>';
+            }
+
+            if (isset($context->options['file'])) {
+                echo ' › ';
+                echo '<span>' . $context->options['file'] . '</span>';
+            }
+            ?>
+        </h2>
+    </div>
+</div>
+
+<div class="file-list pearbox">
+<div class="pearbox-content">
+<?php
+
 $releaseFile = $context->package->name . '-'
     . $context->package->version['release'] . '.tgz';
 
-$traverseFiles = function(\RecursiveIterator $node) use (&$traverseFiles, $context, $releaseFile, $releaseRoot)
-{
+$fileCount      = 0;
+$directoryCount = 0;
+
+$traverseFiles = function(
+    \RecursiveIterator $node
+) use (
+    &$traverseFiles,
+    $context,
+    $releaseFile,
+    $releaseRoot,
+    &$fileCount,
+    &$directoryCount
+) {
     echo '<ul>';
     foreach ($node as $file) {
         echo '<li>';
@@ -32,10 +71,12 @@ $traverseFiles = function(\RecursiveIterator $node) use (&$traverseFiles, $conte
         $filename = basename($file);
 
         if ($node->hasChildren()) {
-            echo $filename;
-            echo '/';
+            $directoryCount++;
+            echo $filename . '/';
             $traverseFiles($node->getChildren());
         } else {
+            $fileCount++;
+
             $filePath = substr(
                 $file,
                 strpos($file, $releaseFile) + strlen($releaseFile) + 1
@@ -60,10 +101,10 @@ $traverseFiles($node);
 ?>
 </div>
 </div>
-<div class="file-content">
 <?php
 
 if (isset($context->file)) {
+    echo' <div class="file-content">';
     echo '<div class="file-line-numbers">';
     $count = 0;
     foreach ($context->file as $line) {
@@ -73,9 +114,7 @@ if (isset($context->file)) {
         echo '<div class=' . $class . '>' . $count . '</div>';
     }
     echo '</div>';
-}
 
-if (isset($context->file)) {
     echo '<pre class="file-lines">';
     echo '<code>';
     $count = 0;
@@ -91,11 +130,19 @@ if (isset($context->file)) {
     }
     echo '</code>';
     echo '</pre>';
+
+    echo '<div class="file-end">EOF</div>';
+    echo '<script>hljs.initHighlightingOnLoad();</script>';
+    echo '</div>';
+} else {
+    echo '<div class="file-info">';
+    printf(
+        '<strong>%s</strong> files in <strong>%s</strong> directories. ',
+        $fileCount,
+        $directoryCount
+    );
+    echo 'Select a file to view its contents.';
+    echo '</div>';
 }
+
 ?>
-
-<div class="file-end">EOF</div>
-
-<script>hljs.initHighlightingOnLoad();</script>
-
-</div>
