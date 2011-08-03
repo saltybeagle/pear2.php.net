@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title><?php echo $context->page_title; ?></title>
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/yui/2.8.0r4/build/reset-fonts/reset-fonts.css" />
+    <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/reset-fonts.css" />
     <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/main.css" />
     <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/news.css" />
     <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/search-form.css" />
@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/file-browser.css" />
     <link rel="stylesheet" href="<?php echo $frontend->getURL(); ?>css/highlight-idea.css" />
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="<?php echo $frontend->getURL(); ?>js/jquery-1.6.1.min.js"></script>
+    <script src="<?php echo $frontend->getURL(); ?>js/history.js"></script>
+    <script src="<?php echo $frontend->getURL(); ?>js/history.adapter.jquery.js"></script>
     <script src="<?php echo $frontend->getURL(); ?>js/pearweb.js"></script>
     <script src="<?php echo $frontend->getURL(); ?>js/highlight.pack.js"></script>
 
@@ -69,7 +71,7 @@ echo $savant->render(new PEAR2Web\Menu(), 'MenuHead.tpl.php');
 
             <div class="left">
                 <h2>Get Started With Pyrus</h2>
-                <a href="http://pear.php.net/manual/en/pyrus.php">Pyrus</a> is a tool to manage PEAR packages. Pyrus simplifies and improves the PEAR experience.
+                <a href="<?php echo $frontend->getURL(); ?>PEAR2_Pyrus">Pyrus</a> is a tool to manage PEAR packages. Pyrus simplifies and improves the PEAR experience.
                 <div id="download">
                     <a class="button" href="http://pear2.php.net/pyrus.phar">Download Pyrus ↴</a>
                 </div>
@@ -110,7 +112,7 @@ echo $savant->render(new PEAR2Web\Menu(), 'MenuHead.tpl.php');
 </div>
 
 <div id="content">
-    <div class="content clearfix view-<?php echo $context->options['view']; ?>">
+    <div id="maincontent" class="content clearfix view-<?php echo $context->options['view']; ?>">
         <?php echo $savant->render($context->page_content); ?>
     </div>
 </div>
